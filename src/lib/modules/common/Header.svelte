@@ -12,7 +12,7 @@
 					<a href={paths.home}>Home</a>
 				</li>
 				<li aria-current={$page.url.pathname === paths.reviews ? 'page' : undefined}>
-					<a href={paths.albums}>About</a>
+					<a href={paths.albums}>Reviews</a>
 				</li>
 			</ul>
 		</nav>
