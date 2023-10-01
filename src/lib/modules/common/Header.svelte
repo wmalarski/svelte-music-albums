@@ -1,33 +1,26 @@
 <script>
 	import { page } from '$app/stores';
-	import logo from '$lib/images/svelte-logo.svg';
-	import github from '$lib/images/github.svg';
+	import { paths } from '$lib/utils/paths';
 </script>
 
-<header>
-	<div class="corner">
-		<a href="https://kit.svelte.dev">
-			<img src={logo} alt="SvelteKit" />
-		</a>
+<header class="navbar bg-base-200 shadow-xl">
+	<div class="flex-1">
+		<a href={paths.home} class="btn btn-ghost normal-case text-xl"> Svelte Music </a>
+		<nav>
+			<ul class="menu menu-horizontal">
+				<li aria-current={$page.url.pathname === paths.home ? 'page' : undefined}>
+					<a href={paths.home}>Home</a>
+				</li>
+				<li aria-current={$page.url.pathname === paths.reviews ? 'page' : undefined}>
+					<a href={paths.albums}>About</a>
+				</li>
+			</ul>
+		</nav>
 	</div>
 
-	<nav>
-		<ul>
-			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-				<a href="/">Home</a>
-			</li>
-			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
-				<a href="/about">About</a>
-			</li>
-			<li aria-current={$page.url.pathname.startsWith('/sverdle') ? 'page' : undefined}>
-				<a href="/sverdle">Sverdle</a>
-			</li>
-		</ul>
-	</nav>
-
-	<div class="corner">
-		<a href="https://github.com/sveltejs/kit">
-			<img src={github} alt="GitHub" />
-		</a>
+	<div class="flex-none gap-2">
+		<div class="form-control">
+			<input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
+		</div>
 	</div>
 </header>
