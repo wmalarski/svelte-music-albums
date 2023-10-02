@@ -1,6 +1,7 @@
 <script>
 	import { page } from '$app/stores';
 	import { paths } from '$lib/utils/paths';
+	import ProfileDropdown from './ProfileDropdown.svelte';
 </script>
 
 <header class="navbar bg-base-200 shadow-xl">
@@ -22,5 +23,6 @@
 		<div class="form-control">
 			<input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
 		</div>
+		<ProfileDropdown />
 	</div>
 </header>

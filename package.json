@@ -42,6 +42,7 @@
 		"@auth/core": "^0.16.0",
 		"@auth/sveltekit": "^0.3.7",
 		"class-variance-authority": "^0.7.0",
+		"lucide-svelte": "^0.279.0",
 		"tailwind-merge": "^1.14.0"
 	}
 }
