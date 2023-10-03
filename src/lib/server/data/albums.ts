@@ -1,10 +1,6 @@
 import type { DataContext } from './context';
 
-const addReviewCounts = async <T extends { id: string }>(
-	context: DataContext,
-	albums: T[],
-	userId: string
-) => {
+const addReviewCounts = async <T extends { id: string }>(context: DataContext, albums: T[]) => {
 	const albumIds = albums.map((album) => album.id);
 
 	const groups = await context.prisma.review.groupBy({
@@ -12,7 +8,7 @@ const addReviewCounts = async <T extends { id: string }>(
 		_count: { albumId: true },
 		by: ['albumId'],
 		having: { albumId: { in: albumIds } },
-		where: { userId }
+		where: { userId: context.user.id }
 	});
 
 	const counts = groups.reduce<Record<string, number>>((prev, curr) => {
@@ -32,23 +28,23 @@ const addReviewCounts = async <T extends { id: string }>(
 	}));
 };
 
-type DeleteAlbum = {
+type DeleteAlbumArgs = {
 	ctx: DataContext;
 	id: string;
 };
 
-export const deleteAlbum = ({ ctx, id }: DeleteAlbum) => {
+export const deleteAlbum = ({ ctx, id }: DeleteAlbumArgs) => {
 	return ctx.prisma.album.deleteMany({
 		where: { id, userId: ctx.user.id }
 	});
 };
 
-type FindAlbum = {
+type FindAlbumArgs = {
 	ctx: DataContext;
 	id: string;
 };
 
-export const findAlbum = async ({ ctx, id }: FindAlbum) => {
+export const findAlbum = async ({ ctx, id }: FindAlbumArgs) => {
 	const album = await ctx.prisma.album.findFirst({
 		include: { artist: true, reviews: true },
 		where: { id }
@@ -82,14 +78,14 @@ export const findAlbum = async ({ ctx, id }: FindAlbum) => {
 	return { album, albums: withCounts, reviews };
 };
 
-type FindAlbums = {
+type FindAlbumsArgs = {
 	ctx: DataContext;
 	query: string;
 	skip: number;
 	take: number;
 };
 
-export const findAlbums = async ({ ctx, query, skip, take }: FindAlbums) => {
+export const findAlbums = async ({ ctx, query, skip, take }: FindAlbumsArgs) => {
 	const [albums, count] = await Promise.all([
 		ctx.prisma.album.findMany({
 			include: { artist: true },
@@ -114,17 +110,17 @@ export const findAlbums = async ({ ctx, query, skip, take }: FindAlbums) => {
 		})
 	]);
 
-	const albumsWithCounts = await addReviewCounts(ctx, albums, ctx.user.id);
+	const albumsWithCounts = await addReviewCounts(ctx, albums);
 
 	return { albums: albumsWithCounts, count };
 };
 
-type FindRandom = {
+type FindRandomArgs = {
 	ctx: DataContext;
 	take: number;
 };
 
-export const findRandom = async ({ ctx, take }: FindRandom) => {
+export const findRandom = async ({ ctx, take }: FindRandomArgs) => {
 	const result = await ctx.prisma.$queryRaw<{ id: string }[]>`
     select "Album".id from "Album" 
     left join "Review" on "Album".id = "Review"."albumId" 
@@ -149,14 +145,14 @@ export const findRandom = async ({ ctx, take }: FindRandom) => {
 	return { albums: withReviews };
 };
 
-type UpdateAlbum = {
+type UpdateAlbumArgs = {
 	ctx: DataContext;
 	id: string;
 	title?: string;
 	year?: number;
 };
 
-export const updateAlbum = ({ ctx, id, title, year }: UpdateAlbum) => {
+export const updateAlbum = ({ ctx, id, title, year }: UpdateAlbumArgs) => {
 	return ctx.prisma.album.updateMany({
 		data: {
 			...(title ? { title } : {}),
