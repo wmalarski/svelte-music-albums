@@ -4,6 +4,7 @@
 	import { AlignJustify, Check } from 'lucide-svelte';
 	import { fly } from 'svelte/transition';
 	import {
+	dropdownMenuCheckClass,
 		dropdownMenuClass,
 		dropdownMenuItemClass,
 		dropdownMenuSeparatorClass,
@@ -50,7 +51,7 @@
 		<div class={dropdownMenuItemClass()} use:melt={$item}>Check for Updates...</div>
 		<div class={dropdownMenuSeparatorClass()} use:melt={$separator} />
 		<div class={dropdownMenuItemClass()} use:melt={$checkboxItem}>
-			<div class="check">
+			<div class={dropdownMenuCheckClass()}>
 				{#if $settingsSync}
 					<Check class="square-4" />
 				{/if}
@@ -60,7 +61,7 @@
 		<div use:melt={$separator} class={dropdownMenuSeparatorClass()} />
 
 		<div class={dropdownMenuItemClass()} use:melt={$checkboxItemA}>
-			<div class="check">
+			<div class={dropdownMenuCheckClass()}>
 				{#if $hideMeltUI}
 					<Check class="square-4" />
 				{/if}
@@ -73,11 +74,3 @@
 		<div use:melt={$arrow} />
 	</div>
 {/if}
-
-<style lang="postcss">
-	.check {
-		@apply absolute left-2 top-1/2 text-magnum-500;
-		@apply absolute left-0 inline-flex w-6 items-center justify-center;
-		translate: 0 calc(-50% + 1px);
-	}
-</style>
