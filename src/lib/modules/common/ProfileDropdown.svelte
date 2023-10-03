@@ -1,38 +1,23 @@
 <script lang="ts">
 	import { createDropdownMenu, melt } from '@melt-ui/svelte';
-	import { writable } from 'svelte/store';
-	import { AlignJustify, Check } from 'lucide-svelte';
+	import { signOut } from "@auth/sveltekit/client"
+	import { AlignJustify } from 'lucide-svelte';
 	import { fly } from 'svelte/transition';
 	import {
-	dropdownMenuCheckClass,
 		dropdownMenuClass,
 		dropdownMenuItemClass,
 		dropdownMenuSeparatorClass,
 		dropdownMenuTriggerClass
 	} from '$lib/components/DropdownMenu';
-
-	const settingsSync = writable(true);
-	const hideMeltUI = writable(false);
+	import { paths } from '$lib/utils/paths';
 
 	const {
 		elements: { trigger, menu, item, separator, arrow },
-		builders: { createCheckboxItem },
 		states: { open }
 	} = createDropdownMenu({
-		forceVisible: true
+		forceVisible: true,
 	});
 
-	const {
-		elements: { checkboxItem }
-	} = createCheckboxItem({
-		checked: settingsSync
-	});
-
-	const {
-		elements: { checkboxItem: checkboxItemA }
-	} = createCheckboxItem({
-		checked: hideMeltUI
-	});
 </script>
 
 <button
@@ -47,30 +32,10 @@
 
 {#if $open}
 	<div class={dropdownMenuClass()} use:melt={$menu} transition:fly={{ duration: 150, y: -10 }}>
-		<div class={dropdownMenuItemClass()} use:melt={$item}>About Melt UI</div>
-		<div class={dropdownMenuItemClass()} use:melt={$item}>Check for Updates...</div>
-		<div class={dropdownMenuSeparatorClass()} use:melt={$separator} />
-		<div class={dropdownMenuItemClass()} use:melt={$checkboxItem}>
-			<div class={dropdownMenuCheckClass()}>
-				{#if $settingsSync}
-					<Check class="square-4" />
-				{/if}
-			</div>
-			Settings Sync is On
-		</div>
+		<a href={paths.albums} class={dropdownMenuItemClass()} use:melt={$item}>Albums</a>
+		<a href={paths.reviews} class={dropdownMenuItemClass()} use:melt={$item}>Reviews</a>
 		<div use:melt={$separator} class={dropdownMenuSeparatorClass()} />
-
-		<div class={dropdownMenuItemClass()} use:melt={$checkboxItemA}>
-			<div class={dropdownMenuCheckClass()}>
-				{#if $hideMeltUI}
-					<Check class="square-4" />
-				{/if}
-			</div>
-			Hide Melt UI
-		</div>
-		<div class={dropdownMenuItemClass()} use:melt={$item} data-disabled>Show All Components</div>
-		<div use:melt={$separator} class={dropdownMenuSeparatorClass()} />
-		<div class={dropdownMenuItemClass()} use:melt={$item}>Quit Melt UI</div>
+		<button on:click={() => signOut()} class={dropdownMenuItemClass()} use:melt={$item}>Logout</button>
 		<div use:melt={$arrow} />
 	</div>
 {/if}
