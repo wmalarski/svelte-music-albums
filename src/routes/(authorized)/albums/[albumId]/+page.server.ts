@@ -1,9 +1,9 @@
-import { findRandom } from '$lib/server/data/albums';
+import { findAlbum } from '$lib/server/data/albums';
 import { getDataContext } from '$lib/server/data/context';
 import type { PageServerLoad } from './$types';
 
 export const load = (async (event) => {
 	const ctx = await getDataContext(event);
-	const albums = await findRandom({ ctx, take: 20 });
-	return { albums };
+	const album = await findAlbum({ ctx, id: event.params.albumId });
+	return { album };
 }) satisfies PageServerLoad;
