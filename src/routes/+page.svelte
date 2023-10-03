@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Counter from '$lib/modules/common/Counter.svelte';
 	import SignIn from '$lib/modules/auth/SignIn.svelte';
 </script>
 
@@ -11,7 +10,5 @@
 <main class="flex flex-col min-h-screen">
 	<section>
 		<SignIn />
-
-		<Counter />
 	</section>
 </main>

@@ -8,8 +8,8 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>Reviews</title>
+	<meta name="description" content="Album review list" />
 </svelte:head>
 
 <section>
