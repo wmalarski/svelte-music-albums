@@ -9,5 +9,15 @@ export const handle = SvelteKitAuth({
 			clientSecret: AUTH0_CLIENT_SECRET,
 			issuer: AUTH0_ISSUER
 		})
-	]
+	],
+	callbacks: {
+		session: ({ session, user }) => {
+			if (session.user) {
+				// eslint-disable-next-line @typescript-eslint/no-explicit-any
+				const sessionUser = session.user as any;
+				sessionUser.id = user?.id;
+			}
+			return session;
+		}
+	}
 });
