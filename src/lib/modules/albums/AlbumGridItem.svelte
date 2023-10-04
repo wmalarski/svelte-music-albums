@@ -1,11 +1,10 @@
 <script lang="ts">
-	import { signIn } from '@auth/sveltekit/client';
-	import { buttonClass } from "$lib/components/Button";
 	import type { FindAlbumsResultItem, FindRandomResultItem } from "$lib/server/data/albums";
 	import { paths } from '$lib/utils/paths';
 	import AlbumCover from './AlbumCover.svelte';
 	import AlbumLinks from './AlbumLinks.svelte';
 	import { formatAlbum } from '$lib/utils/format';
+	import Stars from '$lib/components/Stars/Stars.svelte';
 
 	export let album: FindAlbumsResultItem | FindRandomResultItem;
 </script>
