@@ -4,6 +4,7 @@ export const paths = {
 	album: (albumId: string) => `/albums/${albumId}`,
 	albumReview: (albumId: string) => `/albums/${albumId}/review`,
 	reviews: '/reviews',
+	reviewEdit: (reviewId: string) => `/reviews/${reviewId}/edit`,
 	repository: 'https://github.com/wmalarski/svelte-music-albums'
 };
 

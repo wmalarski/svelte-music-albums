@@ -1,5 +1,5 @@
 <script lang="ts">
-  import stars from '$lib/images/stars.webp';
+  import stars from '$lib/images/stars.png';
 	import starsFilled from '$lib/images/stars-filled.png';
 
 	export let rating: number;

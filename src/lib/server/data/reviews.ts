@@ -79,6 +79,9 @@ export const findReviews = async ({ ctx, skip, take }: FindReviewsArgs) => {
 	return { count, reviews };
 };
 
+type FindReviewsResult = Awaited<ReturnType<typeof findReviews>>;
+export type FindReviewsResultItem = FindReviewsResult['reviews'][0];
+
 type UpdateReviewArgs = {
 	ctx: DataContext;
 	id: string;

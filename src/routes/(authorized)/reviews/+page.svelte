@@ -1,4 +1,5 @@
 <script lang="ts">
+	import ReviewsList from '$lib/modules/reviews/ReviewsList.svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -10,5 +11,5 @@
 </svelte:head>
 
 <section>
-	<pre>{JSON.stringify(data, null, 2)}</pre>
+	<ReviewsList reviews={data.reviews} />
 </section>
