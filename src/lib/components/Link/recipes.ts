@@ -3,7 +3,8 @@ import { twCva } from '$lib/utils/twCva';
 export const linkClass = twCva('link', {
 	defaultVariants: {
 		color: null,
-		hover: null
+		hover: null,
+		isActive: false
 	},
 	variants: {
 		color: {
@@ -19,6 +20,10 @@ export const linkClass = twCva('link', {
 		hover: {
 			false: '',
 			true: 'link-hover'
+		},
+		isActive: {
+			false: '',
+			true: 'border-b-2 border-white'
 		}
 	}
 });
