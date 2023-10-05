@@ -6,8 +6,8 @@
 </script>
 
 <div class="flex flex-col max-h-screen overflow-y-scroll">
-	{#if data.album.album}
-		<AlbumHero album={data.album.album}/>
+	{#if data.album}
+		<AlbumHero album={data.album}/>
 	{/if}
 	<slot />
 </div>

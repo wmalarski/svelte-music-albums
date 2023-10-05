@@ -78,6 +78,8 @@ export const findAlbum = async ({ ctx, id }: FindAlbumArgs) => {
 	return { album, albums: withCounts, reviews };
 };
 
+export type FindAlbumResult = Awaited<ReturnType<typeof findAlbum>>;
+
 type FindAlbumsArgs = {
 	ctx: DataContext;
 	query: string;

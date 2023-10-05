@@ -1,25 +1,31 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import type { PageData } from './$types';
+	import AlbumGrid from '$lib/modules/albums/AlbumGrid.svelte';
+	import ReviewsList from '$lib/modules/reviews/ReviewsList.svelte';
+	import type { LayoutData } from './$types';
 
-	export let data: PageData;
+	export let data: LayoutData;
+
+	$: artist = data.album.artist;
+	$: albums = data.albums.map((entry) => ({ ...entry, artist: artist }));
+	$: reviews = data.reviews.flatMap((review) => {
+    const album = data.albums.find((value) => value.id === review.albumId);
+    return album ? [{ ...review,album: { ...album, artist } }] : [];
+  });
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>Album {data.album.title}</title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<section>
+{#if albums.length > 0}
+	<h2 class="py-4 px-8 text-2xl">Other albums</h2>
+	<AlbumGrid albums={albums} />
+{/if}
 
-	{#if $page.data.session}
-		{#if $page.data.session.user?.image}
-			<span style="background-image: url('{$page.data.session.user.image}')" class="avatar" />
-		{/if}
-		<span class="signedInText">
-			<small>Signed in as</small><br />
-			<strong>{$page.data.session.user?.name ?? 'User'}</strong>
-		</span>
-	{/if}
-	<pre>{JSON.stringify(data, null, 2)}</pre>
-</section>
+{#if reviews.length > 0}
+  <div class="flex flex-col gap-4">
+    <h2 class="py-4 px-8 text-2xl">Reviews</h2>
+    <ReviewsList reviews={reviews} />
+  </div>
+{/if}
