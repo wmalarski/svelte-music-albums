@@ -1,10 +1,14 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { formatAlbum } from '$lib/utils/format';
+	import type { LayoutData } from '../$types';
+
+	export let data: LayoutData;
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>Review {formatAlbum({ album: data.album, artist: data.album.artist })} - Svelte Music Albums</title>
+	<meta name="description" content="Svelte Music Albums" />
 </svelte:head>
 
 <section>

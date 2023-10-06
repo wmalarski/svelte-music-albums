@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-	<title>Sign In</title>
+	<title>Sign In - Svelte Music Albums</title>
 	<meta name="description" content="Svelte Music Albums" />
 </svelte:head>
 

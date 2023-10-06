@@ -1,6 +1,7 @@
 <script lang="ts">
 	import AlbumGrid from '$lib/modules/albums/AlbumGrid.svelte';
 	import ReviewsList from '$lib/modules/reviews/ReviewsList.svelte';
+	import { formatAlbum } from '$lib/utils/format';
 	import type { LayoutData } from './$types';
 
 	export let data: LayoutData;
@@ -14,8 +15,8 @@
 </script>
 
 <svelte:head>
-	<title>Album {data.album.title}</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>{formatAlbum({ album: data.album, artist: data.album.artist })} - Svelte Music Albums</title>
+	<meta name="description" content="Svelte Music Albums" />
 </svelte:head>
 
 {#if albums.length > 0}

@@ -6,8 +6,8 @@
 </script>
 
 <svelte:head>
-	<title>Reviews</title>
-	<meta name="description" content="Album review list" />
+	<title>Reviews - Svelte Music Albums</title>
+	<meta name="description" content="Svelte Music Albums" />
 </svelte:head>
 
 <section>
