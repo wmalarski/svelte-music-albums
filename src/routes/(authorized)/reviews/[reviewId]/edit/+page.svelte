@@ -1,5 +1,12 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import ReviewForm from '$lib/modules/reviews/ReviewForm.svelte';
+	import { formatAlbum } from '$lib/utils/format';
+	import { paths } from '$lib/utils/paths';
+	import type { PageData } from './$types';
+
+	export let data: PageData;
+
+	$: heading = formatAlbum({ album: data.review.album, artist: data.review.album.artist });
 </script>
 
 <svelte:head>
@@ -7,15 +14,15 @@
 	<meta name="description" content="Svelte Music Albums" />
 </svelte:head>
 
-<section>
-
-	{#if $page.data.session}
-		{#if $page.data.session.user?.image}
-			<span style="background-image: url('{$page.data.session.user.image}')" class="avatar" />
-		{/if}
-		<span class="signedInText">
-			<small>Signed in as</small><br />
-			<strong>{$page.data.session.user?.name ?? 'User'}</strong>
-		</span>
-	{/if}
+<section class="flex flex-col p-4">
+	<h1 class="flex items-center text-center text-4xl uppercase sm:text-6xl">
+		Review {heading}
+	</h1>
+	<ReviewForm 
+		albumId={data.review.albumId} 
+		action={paths.reviewEdit(data.review.id)} 
+		rate={data.review.rate} 
+		text={data.review.text}
+	/>
 </section>
+	

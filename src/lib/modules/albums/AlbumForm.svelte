@@ -4,25 +4,23 @@
 
 	export let albumId: string;
   export let action: string;
-  export let text: string | undefined = undefined;
-  export let rate: number | undefined = undefined;
 </script>
 
 <form method="POST" action={action}>
   <input name="id" type="hidden" value={albumId}/>
   
   <div class={formControlClass()}>
-    <label for="text" class={textFieldLabelClass()}>
-      <span class={textFieldLabelTextClass()}>Text</span>
+    <label for="title" class={textFieldLabelClass()}>
+      <span class={textFieldLabelTextClass()}>Title</span>
     </label>
-    <input id="text" name="text" type="text" class={textFieldInputClass()} value={text}>
+    <input id="title" name="title" type="text" class={textFieldInputClass()}>
   </div>
 
   <div class={formControlClass()}>
-    <label for="rate" class={textFieldLabelClass()}>
-      <span class={textFieldLabelTextClass()}>Rate</span>
+    <label for="year" class={textFieldLabelClass()}>
+      <span class={textFieldLabelTextClass()}>Year</span>
     </label>
-    <input id="rate" name="rate" type="number" class={textFieldInputClass()} value={rate}>
+    <input id="year" name="year" type="number" class={textFieldInputClass()}>
   </div>
 
 	<button class={buttonClass()}>Save</button>
