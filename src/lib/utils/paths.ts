@@ -1,11 +1,12 @@
 export const paths = {
-	home: '/',
-	albums: '/albums',
 	album: (albumId: string) => `/albums/${albumId}`,
 	albumReview: (albumId: string) => `/albums/${albumId}/review`,
-	reviews: '/reviews',
+	albums: '/albums',
+	home: '/',
+	repository: 'https://github.com/wmalarski/svelte-music-albums',
+	review: (reviewId: string) => `/reviews/${reviewId}`,
 	reviewEdit: (reviewId: string) => `/reviews/${reviewId}/edit`,
-	repository: 'https://github.com/wmalarski/svelte-music-albums'
+	reviews: '/reviews'
 };
 
 export const pathToYt = (title: string, name: string): string => {

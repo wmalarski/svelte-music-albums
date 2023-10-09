@@ -15,7 +15,7 @@
 	<meta name="description" content="Svelte Music Albums" />
 </svelte:head>
 
-<section class="flex flex-col p-4">
-	<h1 class="flex items-center text-center text-4xl uppercase sm:text-6xl">Review {heading}</h1>
+<section class="flex flex-col p-4 mx-auto">
+	<h1 class="flex items-center text-center text-xl">Review {heading}</h1>
 	<ReviewForm albumId={data.album.id} action={paths.albumReview(data.album.id)} />
 </section>

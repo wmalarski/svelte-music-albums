@@ -19,7 +19,7 @@
 		Review {heading}
 	</h1>
 	<ReviewForm 
-		albumId={data.review.albumId} 
+	  id={data.review.id} 
 		action={paths.reviewEdit(data.review.id)} 
 		rate={data.review.rate} 
 		text={data.review.text}

@@ -27,6 +27,8 @@ type CreateReviewArgs = {
 };
 
 export const createReview = async ({ ctx, albumId, rate, text }: CreateReviewArgs) => {
+	console.log({ session: ctx.session, user: ctx.user, albumId, rate, text });
+
 	const result = await ctx.prisma.review.create({
 		data: { albumId, rate, text, userId: ctx.user.id }
 	});

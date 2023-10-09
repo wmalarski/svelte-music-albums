@@ -2,7 +2,7 @@ import { getDataContext } from '$lib/server/data/context';
 import { findReview, updateReview } from '$lib/server/data/reviews';
 import { formParse } from '$lib/server/utils/formParse';
 import { error } from '@sveltejs/kit';
-import { maxValue, minValue, number, object, optional, string } from 'valibot';
+import { coerce, maxValue, minValue, number, object, optional, string } from 'valibot';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load = (async (event) => {
@@ -22,7 +22,7 @@ export const actions = {
 
 		const schema = object({
 			id: string(),
-			rate: optional(number([minValue(0), maxValue(10)])),
+			rate: optional(coerce(number([minValue(0), maxValue(10)]), Number)),
 			text: optional(string())
 		});
 
