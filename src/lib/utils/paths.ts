@@ -1,5 +1,6 @@
 export const paths = {
 	album: (albumId: string) => `/albums/${albumId}`,
+	albumEdit: (albumId: string) => `/albums/${albumId}/edit`,
 	albumReview: (albumId: string) => `/albums/${albumId}/review`,
 	albums: '/albums',
 	home: '/',

@@ -21,7 +21,7 @@
         Details
       </a>
     </li>
-    <!-- {#if album.userId === session.value.user?.id}
+    {#if album.userId === $page.data.session?.user?.id}
       <li>
         <a
           class={linkClass({
@@ -33,7 +33,7 @@
           Edit
         </a>
       </li>
-      {/if} -->
+    {/if}
 
     <li>
       <a

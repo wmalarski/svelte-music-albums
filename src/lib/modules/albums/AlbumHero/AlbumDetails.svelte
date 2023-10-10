@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from "$app/stores";
 	import AlbumCover from "../AlbumCover.svelte";
 	import AlbumLinks from "../AlbumLinks.svelte";
 	import type { Album, Artist } from "@prisma/client";
@@ -24,7 +25,9 @@
         {/if}
       </div>
       <AlbumLinks album={album} />
-      <!-- {session.value.user?.id === album.userId && <AlbumRemoveForm />} -->
+      {#if $page.data.session?.user?.id === album.userId}
+      <AlbumRemoveForm />
+      {/if}
     </div>
   </div>
 </section>
