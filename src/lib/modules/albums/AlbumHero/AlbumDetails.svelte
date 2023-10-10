@@ -3,6 +3,7 @@
 	import AlbumCover from "../AlbumCover.svelte";
 	import AlbumLinks from "../AlbumLinks.svelte";
 	import type { Album, Artist } from "@prisma/client";
+	import AlbumRemove from "./AlbumRemove.svelte";
 
 	export let album: Album & { artist: Artist };
 </script>
@@ -25,9 +26,9 @@
         {/if}
       </div>
       <AlbumLinks album={album} />
-      {#if $page.data.session?.user?.id === album.userId}
-      <AlbumRemoveForm />
-      {/if}
+      <!-- {#if $page.data.session?.user?.id === album.userId} -->
+      <AlbumRemove album={album} />
+      <!-- {/if} -->
     </div>
   </div>
 </section>

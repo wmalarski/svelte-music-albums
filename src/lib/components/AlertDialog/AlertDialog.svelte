@@ -2,13 +2,12 @@
   import { createDialog, melt } from '@melt-ui/svelte';
   import { X } from 'lucide-svelte';
 	import { buttonClass } from '../Button';
-	import { dialogContentClass, dialogDescriptionClass, dialogOverlayClass, dialogTitleClass } from '../Dialog';
+	import { dialogContentClass, dialogDescriptionClass, dialogOverlayClass, dialogTitleClass, dialogCloseClass } from '../Dialog';
  
   export let triggerText: string;
   export let titleText: string;
   export let descriptionText: string;
-  export let saveText: string;
-  export let cancelText: string;
+  export let onConfirm: VoidFunction;
 
   const {
     elements: {
@@ -53,19 +52,20 @@
           use:melt={$close}
           class={buttonClass()}
         >
-          {cancelText}
+          Cancel
         </button>
         <button
           use:melt={$close}
+          on:click={onConfirm}
           class={buttonClass()}
         >
-          {saveText}
+          Confirm
         </button>
       </div>
       <button
         use:melt={$close}
         aria-label="close"
-        class={buttonClass()}
+        class={dialogCloseClass({variant: "ghost", shape: 'circle', size: 'sm'})}
       >
         <X class="square-4" />
       </button>
