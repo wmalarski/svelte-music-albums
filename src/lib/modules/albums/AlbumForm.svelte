@@ -9,19 +9,19 @@
 <form method="POST" action={action}>
   <input name="id" type="hidden" value={albumId}/>
   
-  <div class={formControlClass()}>
+  <fieldset class={formControlClass()}>
     <label for="title" class={textFieldLabelClass()}>
       <span class={textFieldLabelTextClass()}>Title</span>
     </label>
     <input id="title" name="title" type="text" class={textFieldInputClass()}>
-  </div>
+  </fieldset>
 
-  <div class={formControlClass()}>
+  <fieldset class={formControlClass()}>
     <label for="year" class={textFieldLabelClass()}>
       <span class={textFieldLabelTextClass()}>Year</span>
     </label>
     <input id="year" name="year" type="number" class={textFieldInputClass()}>
-  </div>
+  </fieldset>
 
 	<button class={buttonClass()}>Save</button>
 </form>

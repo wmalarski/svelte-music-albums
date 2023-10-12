@@ -18,19 +18,19 @@
     <input name="id" type="hidden" value={id}/>
   {/if}
 
-  <div class={formControlClass()}>
+  <fieldset class={formControlClass()}>
     <label for="text" class={textFieldLabelClass()}>
       <span class={textFieldLabelTextClass()}>Text</span>
     </label>
     <input id="text" name="text" type="text" class={textFieldInputClass({variant: "bordered"})} bind:value={text}>
-  </div>
+  </fieldset>
 
-  <div class={formControlClass()}>
+  <fieldset class={formControlClass()}>
     <label for="rate" class={textFieldLabelClass()}>
       <span class={textFieldLabelTextClass()}>Rate</span>
     </label>
     <input id="rate" name="rate" type="number" min={0} max={10} step={0.1} class={textFieldInputClass({variant: "bordered"})} value={rate}>
-  </div>
+  </fieldset>
 
 	<button class={buttonClass()}>Save</button>
 </form>
