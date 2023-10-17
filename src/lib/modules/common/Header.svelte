@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 	import { paths } from '$lib/utils/paths';
 	import ProfileDropdown from './ProfileDropdown.svelte';
-	import SearchDialog from './SearchDialog.svelte';
+	import SearchDialog from './SearchDialog/SearchDialog.svelte';
 </script>
 
 <header class="navbar bg-base-200 shadow-xl">

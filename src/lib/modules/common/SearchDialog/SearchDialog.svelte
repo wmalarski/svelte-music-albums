@@ -6,6 +6,7 @@
 	import { formControlClass, textFieldLabelClass, textFieldLabelTextClass, textFieldInputClass } from '$lib/components/TextField';
 	import { string, parseAsync } from 'valibot';
   import type { FindAlbumsResult } from "$lib/server/data/albums";
+	import SearchResultItem from './SearchResultItem.svelte';
 
   const {
     elements: {
@@ -25,9 +26,7 @@
   let query: string;
   let result: FindAlbumsResult;
 
-  const onSubmit = async (event: Event & { currentTarget: EventTarget & HTMLFormElement }) => {
-    event.preventDefault();
-    
+  const onSubmit = async (event: Event & { currentTarget: EventTarget & HTMLFormElement }) => {    
     const formData = new FormData(event.currentTarget);
     const query = await parseAsync(string(), formData.get("query") || '');
     const search = new URLSearchParams();
@@ -60,7 +59,7 @@
         Find album
       </p>
 
-      <form on:submit={onSubmit}>
+      <form on:submit|preventDefault={onSubmit}>
         <fieldset class={formControlClass()}>
           <label for="query" class={textFieldLabelClass()}>
             <span class={textFieldLabelTextClass()}>Search</span>
@@ -75,8 +74,12 @@
         </fieldset>
       </form>
 
-      <pre>{JSON.stringify(result, null, 2)}</pre>
-
+      <div>
+        {#each result.albums as album}
+          <SearchResultItem album={album} />
+        {/each}
+      </div>
+        
       <button
         use:melt={$close}
         aria-label="close"
