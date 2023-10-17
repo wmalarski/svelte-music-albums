@@ -117,7 +117,7 @@ export const findAlbums = async ({ ctx, query, skip, take }: FindAlbumsArgs) => 
 	return { albums: albumsWithCounts, count };
 };
 
-type FindAlbumsResult = Awaited<ReturnType<typeof findAlbums>>;
+export type FindAlbumsResult = Awaited<ReturnType<typeof findAlbums>>;
 export type FindAlbumsResultItem = FindAlbumsResult['albums'][0];
 
 type FindRandomArgs = {

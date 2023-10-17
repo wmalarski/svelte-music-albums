@@ -4,7 +4,9 @@
   import { Search, X } from 'lucide-svelte';
 	import { dialogContentClass, dialogDescriptionClass, dialogOverlayClass, dialogTitleClass, dialogCloseClass } from '$lib/components/Dialog';
 	import { formControlClass, textFieldLabelClass, textFieldLabelTextClass, textFieldInputClass } from '$lib/components/TextField';
- 
+	import { string, parseAsync } from 'valibot';
+  import type { FindAlbumsResult } from "$lib/server/data/albums";
+
   const {
     elements: {
       trigger,
@@ -21,12 +23,18 @@
   });
 
   let query: string;
+  let result: FindAlbumsResult;
 
-  const onChange = (event: Event & { currentTarget: EventTarget & HTMLFormElement }) => {
+  const onSubmit = async (event: Event & { currentTarget: EventTarget & HTMLFormElement }) => {
     event.preventDefault();
+    
     const formData = new FormData(event.currentTarget);
-    const query = formData.get("query") || '';
-    console.log('query', {query})
+    const query = await parseAsync(string(), formData.get("query") || '');
+    const search = new URLSearchParams();
+    search.set("query", query);
+
+    const response = await fetch(`/api/search?${search}`);
+    result = await response.json();
   }
 </script>
  
@@ -45,14 +53,14 @@
       class={dialogContentClass()}
       use:melt={$content}
     >
-    <h2 use:melt={$title} class={dialogTitleClass()}>
-      Search
-    </h2>
-    <p use:melt={$description} class={dialogDescriptionClass()}>
-      Find album
-    </p>
+      <h2 use:melt={$title} class={dialogTitleClass()}>
+        Search
+      </h2>
+      <p use:melt={$description} class={dialogDescriptionClass()}>
+        Find album
+      </p>
 
-      <form on:change={onChange}>
+      <form on:submit={onSubmit}>
         <fieldset class={formControlClass()}>
           <label for="query" class={textFieldLabelClass()}>
             <span class={textFieldLabelTextClass()}>Search</span>
@@ -66,6 +74,8 @@
           >
         </fieldset>
       </form>
+
+      <pre>{JSON.stringify(result, null, 2)}</pre>
 
       <button
         use:melt={$close}
