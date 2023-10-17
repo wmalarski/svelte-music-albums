@@ -46,7 +46,6 @@
         {descriptionText}
       </p>
  
-
       <div class="mt-6 flex justify-end gap-4">
         <button
           use:melt={$close}
