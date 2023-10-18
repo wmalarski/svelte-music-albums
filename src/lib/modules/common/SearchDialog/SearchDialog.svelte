@@ -78,13 +78,13 @@
         </fieldset>
       </form>
 
-      <div class="flex flex-col gap-2 overflow-scroll max-h-80">
-        {#if result}
+      {#if result}
+        <ul class="flex flex-col gap-2 overflow-scroll max-h-80">
           {#each result.albums as album}
             <SearchResultItem album={album} />
           {/each}   
-        {/if}       
-      </div>
+        </ul>
+      {/if}       
         
       <button
         use:melt={$close}

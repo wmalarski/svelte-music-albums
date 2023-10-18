@@ -11,7 +11,7 @@
 	
 	const dispatch = createEventDispatcher();
 
-	let component: HTMLDivElement | undefined;
+	let component: HTMLUListElement | undefined;
 	let isLoadMore: boolean = false;
 
 	const onScroll = (event: Event) => {
@@ -47,9 +47,9 @@
 
 </script>
 
-<div bind:this={component} class="grid grid-cols-[repeat(auto-fill,minmax(15rem,1fr))] gap-4 p-8">
+<ul bind:this={component} class="grid grid-cols-[repeat(auto-fill,minmax(15rem,1fr))] gap-4 p-8">
 	{#each albums as album}
 		<AlbumGridItem album={album} />
 	{/each}
-</div>
+</ul>
 

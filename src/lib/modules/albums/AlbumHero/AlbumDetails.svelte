@@ -26,9 +26,9 @@
         {/if}
       </div>
       <AlbumLinks album={album} />
-      <!-- {#if $page.data.session?.user?.id === album.userId} -->
+      {#if $page.data.session?.user?.id === album.userId}
       <AlbumRemove album={album} />
-      <!-- {/if} -->
+      {/if}
     </div>
   </div>
 </section>

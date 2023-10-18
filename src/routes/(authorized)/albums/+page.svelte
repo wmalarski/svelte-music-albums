@@ -4,6 +4,13 @@
 	import AlbumGrid from '$lib/modules/albums/AlbumGrid.svelte';
 
 	export let data: PageData;
+
+	let hasMore = false;
+
+	const onLoadMore = () => {
+		console.log({ page })
+		//
+	};
 </script>
 
 <svelte:head>
@@ -11,6 +18,6 @@
 	<meta name="description" content="Svelte Music Albums" />
 </svelte:head>
 
-<section>
-	<AlbumGrid albums={data.albums} />
+<section class="overflow-y-scroll max-h-full">
+	<AlbumGrid albums={data.albums} on:loadMore={onLoadMore} hasMore={hasMore} />
 </section>

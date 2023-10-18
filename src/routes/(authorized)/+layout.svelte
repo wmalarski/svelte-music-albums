@@ -3,7 +3,7 @@
 	import Header from '$lib/modules/common/Header.svelte';
 </script>
 
-<div class="app flex flex-col min-h-screen">
+<div class="grid overflow-y-hidden h-screen min-h-screen">
 	<Header />
 
 	<main>

@@ -9,7 +9,7 @@
 	export let album: FindAlbumsResultItem | FindRandomResultItem;
 </script>
 
-<div class="w-64">
+<li class="w-64">
 	<a href={paths.album(album.id)}>
 		<div class="transition-scale scale-95 duration-300 ease-in-out hover:scale-100">
 			<AlbumCover album={album} />
@@ -20,4 +20,4 @@
 		<Stars rating={album.avg} />
 	</a>
 	<AlbumLinks album={album} />
-</div>
+</li>

@@ -5,8 +5,8 @@
 	export let reviews: FindReviewsResultItem[];
 </script>
 
-<section class="grid grid-cols-[repeat(auto-fill,minmax(30rem,1fr))] gap-4 p-8">
+<ul class="grid grid-cols-[repeat(auto-fill,minmax(30rem,1fr))] gap-4 p-8">
   {#each reviews as review}
     <ReviewsListItem review={review} />
   {/each}
-</section>
+</ul>
