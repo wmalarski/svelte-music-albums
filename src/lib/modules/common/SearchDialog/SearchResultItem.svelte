@@ -9,9 +9,9 @@
 	export let album: FindAlbumsResultItem | FindRandomResultItem;
 </script>
 
-<div class="w-64 flex gap-2">
+<div class="flex gap-2">
 	<a class="transition-scale scale-95 duration-300 ease-in-out hover:scale-100" href={paths.album(album.id)}>
-    <AlbumCover album={album} />
+    <AlbumCover size="small" album={album} />
 	</a>
   <div>
     <a href={paths.album(album.id)}>

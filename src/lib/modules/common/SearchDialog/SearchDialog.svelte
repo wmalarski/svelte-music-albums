@@ -7,6 +7,8 @@
 	import { string, parseAsync } from 'valibot';
   import type { FindAlbumsResult } from "$lib/server/data/albums";
 	import SearchResultItem from './SearchResultItem.svelte';
+	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 
   const {
     elements: {
@@ -23,7 +25,7 @@
     forceVisible: true,
   });
 
-  let query: string;
+  let query: string = $page.url.searchParams.get("query") || '';
   let result: FindAlbumsResult;
 
   const onSubmit = async (event: Event & { currentTarget: EventTarget & HTMLFormElement }) => {    
@@ -34,6 +36,8 @@
 
     const response = await fetch(`/api/search?${search}`);
     result = await response.json();
+
+    await goto(`?${search}`);
   }
 </script>
  
@@ -69,15 +73,17 @@
             name="query" 
             type="text" 
             class={textFieldInputClass({variant: "bordered"})} 
-            bind:value={query}
+            value={query}
           >
         </fieldset>
       </form>
 
-      <div>
-        {#each result.albums as album}
-          <SearchResultItem album={album} />
-        {/each}
+      <div class="flex flex-col gap-2 overflow-scroll max-h-80">
+        {#if result}
+          {#each result.albums as album}
+            <SearchResultItem album={album} />
+          {/each}   
+        {/if}       
       </div>
         
       <button

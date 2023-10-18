@@ -16,7 +16,7 @@ export const getCoversAttributes = (covers: Covers) => {
 		return prev;
 	}, {});
 
-	const srcSet = Object.entries(grouped)
+	const srcset = Object.entries(grouped)
 		.map(([key, value]) => `${value} ${key}w`)
 		.join(', ');
 
@@ -26,5 +26,5 @@ export const getCoversAttributes = (covers: Covers) => {
 
 	const src = grouped[sorted[0]];
 
-	return { src, srcSet };
+	return { src, srcset };
 };
