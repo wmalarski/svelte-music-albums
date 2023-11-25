@@ -24,8 +24,5 @@
 {/if}
 
 {#if reviews.length > 0}
-  <section class="flex flex-col gap-4">
-    <h2 class="py-4 px-8 text-2xl">Reviews</h2>
-    <ReviewsList reviews={reviews} />
-  </section>
+	<ReviewsList reviews={reviews} hasMore={false} title="Reviews" />
 {/if}
