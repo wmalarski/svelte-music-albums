@@ -1,6 +1,6 @@
 import { paths } from '$lib/utils/paths';
 import { redirect, type RequestEvent } from '@sveltejs/kit';
-import prisma from '../db/client';
+import { prisma } from '../db/client';
 
 export const getDataContext = async (event: RequestEvent) => {
 	const session = await event.locals.getSession();

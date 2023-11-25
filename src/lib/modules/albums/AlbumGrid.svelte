@@ -21,6 +21,8 @@
 			? element.scrollWidth - element.clientWidth - element.scrollLeft
 			: element.scrollHeight - element.clientHeight - element.scrollTop;
 
+		console.log("onScroll")
+
 		if (offset <= threshold) {
 			if (!isLoadMore && hasMore) {
 				dispatch("loadMore");

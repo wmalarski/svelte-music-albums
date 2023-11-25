@@ -6,7 +6,7 @@
 <div class="grid overflow-y-hidden h-screen min-h-screen">
 	<Header />
 
-	<main>
+	<main class="overflow-y-hidden">
 		<slot />
 	</main>
 
