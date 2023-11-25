@@ -1,15 +1,15 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import type { PageData } from './$types';
 	import AlbumGrid from '$lib/modules/albums/AlbumGrid.svelte';
 
 	export let data: PageData;
 
-	let hasMore = false;
+	let albums = data.albums;
 
-	const onLoadMore = () => {
-		console.log({ page })
-		//
+	const onLoadMore = async () => {
+		const response = await fetch("/api/albums");
+		const newData = await response.json();
+		albums = [...albums,...newData.albums];
 	};
 </script>
 
@@ -18,6 +18,4 @@
 	<meta name="description" content="Svelte Music Albums" />
 </svelte:head>
 
-<section class="overflow-y-scroll max-h-full">
-	<AlbumGrid albums={data.albums} on:loadMore={onLoadMore} hasMore={hasMore} />
-</section>
+<AlbumGrid albums={albums} on:loadMore={onLoadMore} hasMore />

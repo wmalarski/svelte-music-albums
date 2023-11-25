@@ -20,10 +20,7 @@
 </svelte:head>
 
 {#if albums.length > 0}
-	<section class="flex flex-col gap-4">
-		<h2 class="py-4 px-8 text-2xl">Other albums</h2>
-		<AlbumGrid albums={albums} hasMore={false} />
-	</section>
+	<AlbumGrid albums={albums} hasMore={false} title="Other albums" />
 {/if}
 
 {#if reviews.length > 0}
