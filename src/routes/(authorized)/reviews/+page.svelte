@@ -24,4 +24,4 @@
 	<meta name="description" content="Svelte Music Albums" />
 </svelte:head>
 
-<ReviewsList reviews={data.reviews} on:loadMore={onLoadMore} hasMore={reviews.length < data.count} />
+<ReviewsList reviews={data.reviews} on:loadMore={onLoadMore} hasMore={reviews.length < data.count} shouldScroll />

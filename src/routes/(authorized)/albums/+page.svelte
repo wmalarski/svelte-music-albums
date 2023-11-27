@@ -18,4 +18,4 @@
 	<meta name="description" content="Svelte Music Albums" />
 </svelte:head>
 
-<AlbumGrid albums={albums} on:loadMore={onLoadMore} hasMore />
+<AlbumGrid albums={albums} on:loadMore={onLoadMore} hasMore shouldScroll />

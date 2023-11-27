@@ -2,12 +2,14 @@
 	import type { FindReviewsResultItem } from "$lib/server/data/reviews";
 	import { createEventDispatcher } from "svelte";
 	import ReviewsListItem from "./ReviewsListItem.svelte";
+	import { twCx } from "$lib/utils/twCva";
 
   export let threshold = 0;
 	export let horizontal = false;
 	export let reviews: FindReviewsResultItem[];
   export let hasMore: boolean;
   export let title: string | null = null;
+  export let shouldScroll: boolean = false;
 
   const dispatch = createEventDispatcher();
 
@@ -31,7 +33,7 @@
   }
 </script>
 
-<section class="overflow-y-scroll max-h-full flex flex-col gap-4" on:scroll={onScroll} on:resize={onScroll}>
+<section class={twCx("flex flex-col gap-4", {"overflow-y-scroll max-h-full": shouldScroll})} on:scroll={onScroll} on:resize={onScroll}>
   {#if title}
     <h2 class="py-4 px-8 text-2xl">{title}</h2>
   {/if}

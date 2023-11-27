@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { FindAlbumsResultItem, FindRandomResultItem } from "$lib/server/data/albums";
+	import { twCx } from "$lib/utils/twCva";
 	import AlbumGridItem from './AlbumGridItem.svelte';
 	import { createEventDispatcher } from 'svelte';
 	
@@ -8,6 +9,7 @@
 	export let albums: (FindAlbumsResultItem | FindRandomResultItem)[];
 	export let hasMore: boolean;
 	export let title: string | null = null;
+	export let shouldScroll: boolean = false;
 	
 	const dispatch = createEventDispatcher();
 
@@ -29,10 +31,9 @@
 			isLoadMore = false;
 		}
 	}
-
 </script>
 
-<section class="overflow-y-scroll max-h-full flex flex-col gap-4" on:scroll={onScroll} on:resize={onScroll}>
+<section class={twCx("flex flex-col gap-4", {"overflow-y-scroll max-h-full": shouldScroll})} on:scroll={onScroll} on:resize={onScroll}>
 	{#if title}
 		<h2 class="py-4 px-8 text-2xl">{title}</h2>
 	{/if}
